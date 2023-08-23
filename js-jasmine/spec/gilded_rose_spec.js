@@ -76,4 +76,13 @@ describe("Gilded Rose", function () {
     gildedRose.updateQuality();
     expect(items[0].quality).toBe(50);
   });
+
+  //Test if Sulfuras quality is always 80
+  it("Quality never goes past 50, sellIn is null", () => {
+    const items = [new Item("Sulfuras", 10, 80)];
+    const gildedRose = new Shop(items);
+    gildedRose.updateQuality();
+    expect(items[0].quality).toBe(80);
+    expect(items[0].sellIn).toBe(null);
+  });
 });

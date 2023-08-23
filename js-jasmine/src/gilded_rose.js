@@ -12,6 +12,7 @@ class Shop {
     this.itemRules = {
       Sulfuras: (item) => {
         item.quality = 80;
+        item.sellIn = null;
       },
       "Aged Brie": (item) => {
         if (item.quality < 50) {
