@@ -68,4 +68,12 @@ describe("Gilded Rose", function () {
     gildedRose.updateQuality();
     expect(items[0].quality).toBe(9);
   });
+
+  //Test if items whose quality go up cap at 50
+  it("Quality never goes past 50", () => {
+    const items = [new Item("Aged Brie", 3, 50)];
+    const gildedRose = new Shop(items);
+    gildedRose.updateQuality();
+    expect(items[0].quality).toBe(50);
+  });
 });
