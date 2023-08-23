@@ -27,55 +27,55 @@ describe("Gilded Rose", function () {
     }
   });
 
-  // Test if Aged Brie quality increases by 1 when sellIn--
-  it("Aged Brie quality increases with age", () => {
+  it("Aged Brie quality increases by 1 when sellIn--", () => {
     const items = [new Item("Aged Brie", 6, 10)];
     const gildedRose = new Shop(items);
     gildedRose.updateQuality();
     expect(items[0].quality).toBe(11);
   });
 
-  // Test if Backstage pass quality increases by 3 when sellIn < 5
-  it("Backstage passes quality increases with age", () => {
+  it("Backstage passes quality increases by 3 when sellIn < 5", () => {
     const items = [new Item("Backstage passes", 3, 10)];
     const gildedRose = new Shop(items);
     gildedRose.updateQuality();
     expect(items[0].quality).toBe(13);
   });
 
-  // Test if Backstage pass quality increases by 2 when 5 < sellIn < 10
-  it("Backstage passes quality increases with age", () => {
+  it("Backstage passes quality increases by 2 when 5 < sellIn < 10", () => {
     const items = [new Item("Backstage passes", 6, 10)];
     const gildedRose = new Shop(items);
     gildedRose.updateQuality();
     expect(items[0].quality).toBe(12);
   });
 
-  // Test if Backstage pass quality increases by 1 when sellIn--
-  it("Backstage passes quality increases with age", () => {
+  it("Backstage passes quality increases by 1 when sellIn--", () => {
     const items = [new Item("Backstage passes", 24, 10)];
     const gildedRose = new Shop(items);
     gildedRose.updateQuality();
     expect(items[0].quality).toBe(11);
   });
 
-  //Test if default items decreases by 1 when sellIn--
-  it("Default item decreases with age", () => {
+  it("Backstage passes quality = 0 after concert", () => {
+    const items = [new Item("Backstage passes", -1, 20)];
+    const gildedRose = new Shop(items);
+    gildedRose.updateQuality();
+    expect(items[0].quality).toBe(0);
+  });
+
+  it("Default item decreases by 1 when sellIn--", () => {
     const items = [new Item("Cabbage", 3, 10)];
     const gildedRose = new Shop(items);
     gildedRose.updateQuality();
     expect(items[0].quality).toBe(9);
   });
 
-  //Test if default items decreases by 2 when sellIn < 0
-  it("Default item decreases with age", () => {
+  it("Default item decreases by 2 when sellIn < 0", () => {
     const items = [new Item("Cabbage", -2, 10)];
     const gildedRose = new Shop(items);
     gildedRose.updateQuality();
     expect(items[0].quality).toBe(8);
   });
 
-  //Test if items whose quality go up cap at 50
   it("Quality never goes past 50", () => {
     const items = [new Item("Aged Brie", 3, 50)];
     const gildedRose = new Shop(items);
@@ -83,16 +83,14 @@ describe("Gilded Rose", function () {
     expect(items[0].quality).toBe(50);
   });
 
-  //Test if items whose quality are never negative
-  it("Quality never goes past 50", () => {
+  it("Quality never negative", () => {
     const items = [new Item("Celery", 2, 0)];
     const gildedRose = new Shop(items);
     gildedRose.updateQuality();
     expect(items[0].quality).toBe(0);
   });
 
-  //Test if Sulfuras quality is always 80
-  it("Quality never goes past 50, sellIn is null", () => {
+  it("Sulfuras quality always 80 and sellIn is null", () => {
     const items = [new Item("Sulfuras", 10, 80)];
     const gildedRose = new Shop(items);
     gildedRose.updateQuality();
@@ -100,16 +98,14 @@ describe("Gilded Rose", function () {
     expect(items[0].sellIn).toBe(null);
   });
 
-  //Test if Conjured item loses quality twice as fast
-  it("Quality of Conjured item decreases .2x", () => {
+  it("Quality of Conjured item decreases by 2 (twice as fast as default)", () => {
     const items = [new Item("Conjured Cabbage", 10, 30)];
     const gildedRose = new Shop(items);
     gildedRose.updateQuality();
     expect(items[0].quality).toBe(28);
   });
 
-  //Test if Conjured item loses quality x2 twice as fast when sellIn < 0
-  it("Quality of Conjured item decreases .2x", () => {
+  it("Quality of Conjured item decreases 4 (twice as fast as default (sellIn expired))", () => {
     const items = [new Item("Conjured Cabbage", -2, 10)];
     const gildedRose = new Shop(items);
     gildedRose.updateQuality();
